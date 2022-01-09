@@ -49,39 +49,39 @@ namespace ft
     const_reverse_iterator  rend() const {}
 
     // 3. Capacity:
-    size_type     size() const {}
-    size_type     max_size() const {}
-    void          resize(size_type n, value_type val = value_type()) {}
-    size_type     capacity() const {}
-    bool          empty() const {}
-    void          reserve(size_type n) {}
+    size_type               size() const {}
+    size_type               max_size() const {}
+    void                    resize(size_type n, value_type val = value_type()) {}
+    size_type               capacity() const {}
+    bool                    empty() const {}
+    void                    reserve(size_type n) {}
 
     // 4. Element access:
-    reference         operator[](size_type n) {}
-    const_reference   operator[](size_type n) const {}
-    reference         at(size_type n) {}
-    const_reference   at(size_type n) const {}
-    reference         front() {}
-    const_reference   front() const {}
-    reference         back() {}
-    const_reference   back() const {}
+    reference               operator[](size_type n) {}
+    const_reference         operator[](size_type n) const {}
+    reference               at(size_type n) {}
+    const_reference         at(size_type n) const {}
+    reference               front() {}
+    const_reference         front() const {}
+    reference               back() {}
+    const_reference         back() const {}
 
     // 5. Modifiers:
     template <class InputIterator>
-    void      assign(InputIterator first, InputIterator last) {}
+    void              assign(InputIterator first, InputIterator last) {}
 
     template <class InputIterator>
-    void      insert (iterator position, InputIterator first, InputIterator last) {}
+    void              insert (iterator position, InputIterator first, InputIterator last) {}
     
-    void      assign(size_type n, const value_type& val) {}
-    void      push_back (const value_type& val) {}
-    void      pop_back() {}
-    iterator  insert(iterator position, const value_type& val) {}
-    void      insert(iterator position, size_type n, const value_type& val) {}
-    iterator  erase(iterator position) {}
-    iterator  erase(iterator first, iterator last) {}
-    void      swap (vector& x) {}
-    void      clear() {}
+    void              assign(size_type n, const value_type& val) {}
+    void              push_back (const value_type& val) {}
+    void              pop_back() {}
+    iterator          insert(iterator position, const value_type& val) {}
+    void              insert(iterator position, size_type n, const value_type& val) {}
+    iterator          erase(iterator position) {}
+    iterator          erase(iterator first, iterator last) {}
+    void              swap (vector& x) {}
+    void              clear() {}
 
     // 6. Allocator: 
     allocator_type    get_allocator() const {}
