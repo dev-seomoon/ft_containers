@@ -85,9 +85,6 @@ namespace ft
 
     // 6. Allocator: 
     allocator_type    get_allocator() const {}
-
-    private:
-    
   };
 }
 
