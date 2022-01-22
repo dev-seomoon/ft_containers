@@ -33,11 +33,8 @@ namespace ft
       }
 
       reference         operator*() { return (*_value); }
-      const_reference   operator*() const { return (*_value); }
       pointer           operator->() { return (_value); }
-      const_pointer     operator->() const { return (_value); }
       reference         operator[](int index) { return (*(_value + index)); }
-      const_reference   operator[](int index) const { return (*(_value + index)); }
       vector_iterator   operator++(int) {
         vector_iterator tmp(*this);
         ++(*this);
