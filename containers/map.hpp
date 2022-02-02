@@ -4,14 +4,15 @@
 # include <stdexcept>
 
 # include "../iterators/map_iterator.hpp"
-# include "../iterators/map_rev_iterator.hpp"
+# include "../iterators/reverse_iterator.hpp"
+# include "../utils/utils.hpp"
 
 namespace ft
 {
-  template <class Key, class T, class Compare = less<Key>, class Alloc = std::allocator<pair<const Key, T>>
-  class map
+  template < class Key, class T, class Compare = ft::less<Key>, class Alloc = std::allocator<std::pair<const Key, T> >
+  > class map
   {
-    public: 
+    public:
       /* Member types */
       typedef Key                               key_type;
       typedef T                                 mapped_type;

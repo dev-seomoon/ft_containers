@@ -3,7 +3,7 @@
 
 namespace ft
 {
-  template<typename T, bool Const> //instead of B..
+  template<typename T, bool Const>
   class vector_iterator
   {
     public:
