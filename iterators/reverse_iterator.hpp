@@ -3,6 +3,7 @@
 
 namespace ft
 {
+  // Random-access reverse iterator
   template<typename T, bool Const>
   class reverse_iterator
   {

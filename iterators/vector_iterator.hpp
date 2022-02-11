@@ -3,6 +3,7 @@
 
 namespace ft
 {
+  // Random-access iterator
   template<typename T, bool Const>
   class vector_iterator
   {

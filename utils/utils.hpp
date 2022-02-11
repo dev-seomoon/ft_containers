@@ -11,8 +11,6 @@ namespace ft
       return (x < y);
     }
   };
-
-  //ft::pair -> map_iterator에서 사용
 }
 
 #endif

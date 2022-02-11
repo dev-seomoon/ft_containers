@@ -1,11 +1,11 @@
 #ifndef MAP_HPP
 # define MAP_HPP
 
-# include <stdexcept>
+# include <stdexcept> // std::allocator
 
 # include "../iterators/map_iterator.hpp"
-# include "../iterators/reverse_iterator.hpp"
-# include "../utils/utils.hpp"
+# include "../iterators/map_reverse_iterator.hpp"
+# include "../utils/utils.hpp" // ft::less
 
 namespace ft
 {
@@ -16,38 +16,79 @@ namespace ft
       /* Member types */
       typedef Key                               key_type;
       typedef T                                 mapped_type;
-      typedef ft::pair<key_type, mapped_type>   value_type;
       typedef Compare                           key_compare;
-      class value_compare : publid std::binary_function<value_type, value_type, bool>
+      typedef std::pair<key_type, mapped_type>  value_type;
+      typedef Alloc                             allocator_type;
+      typedef value_type&                       reference;
+      typedef const value_type&                 const_reference;
+      typedef value_type*                       pointer;
+      typedef const value_type*                 const_pointer;
+      typedef long int                          difference_type;
+      typedef size_t                            size_type;
+      typedef typename ft::map_iterator<Key, T, Compare, Node, false> iterator;
+      typedef typename ft::map_iterator<Key, T, Compare, Node, true>  const_iterator;
+      typedef typename ft::map_reverse_iterator<Key, T, Compare, Node, false> reverse_iterator;
+      typedef typename ft::map_reverse_iterator<Key, T, Compare, Node, true>  const_reverse_iterator;
+      class value_compare 
+      : public std::binary_function<value_type, value_type, bool>
       {
         protected:
           key_compare     comp;
-          value_compare(Compare c) : comp(c) {}
+          value_compare(key_compare compare) : comp(compare) {}
         
         public:
           typedef bool          result_type;
           typedef value_type    first_argument_type;
           typedef value_type    second_argument_type;
 
-          bool operator()(const value_type& x, const value_type& y) const
+          bool  operator()(const value_type& x, const value_type& y) const
           {
             return comp(x.first, y.first);
           }
       }
-      typedef Alloc                             allocator_type;
-      typedef allocator_type::reference         reference;
-      typedef allocator_type::const_reference   const_reference;
-      typedef allocator_type::const_pointer     const_pointer;
-      typedef long int                          difference_type;
-      typedef size_t                            size_type;
 
+
+    private: 
+      /* Node Attributes */
+      struct Node
+      {
+        std::pair<const Key, T>   content;
+        Node*                     parent;
+        Node*                     left;
+        Node*                     right;
+      };
+
+      Node*                       root;
+      Node*                       last;
+      size_type                   size;
+      allocator_type              alloc;
+      key_compare                 comp;
+      std::allocator<Node>        allocNode;
+
+
+    public:
       /* Member functions */
       // 1. Copilien form
-      explicit map(const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) {}
+      // defalut constructor
+      explicit map(const key_compare& compare = key_compare(), const allocator_type& allocator = allocator_type())
+      : size(0), alloc(allocator), comp(compare)
+      {
+        last = createNode(std::pair<const key_type, mapped_type>());
+        root = last;
+        last->left = last;
+        last->right = last;
+      }
 
+      // range constructor
       template <class InputIterator>
-      map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) {}
+      map(
+        InputIterator first, InputIterator last, 
+        const key_compare& comp = key_compare(), 
+        const allocator_type& alloc = allocator_type(),
+        typename 
+      ) {}
 
+      // copy constructor
       map(const map& x) {}
 
       ~map() {}
