@@ -85,8 +85,21 @@ namespace ft
         InputIterator first, InputIterator last, 
         const key_compare& comp = key_compare(), 
         const allocator_type& alloc = allocator_type(),
-        typename 
-      ) {}
+        typename ft::enable_if<!ft::is_integral<InputIterator>::value >::type* = 0
+      )
+      : size(0), alloc(alloc), comp(comp)
+      {
+        last = createNode(std::pair<const key_type, mapped_type>());
+        root = last;
+        last->left = last;
+        last->right = last;
+
+        while (first != last)
+        {
+          insert(*first);
+          ++first;
+        }
+      }
 
       // copy constructor
       map(const map& x) {}
