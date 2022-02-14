@@ -102,10 +102,33 @@ namespace ft
       }
 
       // copy constructor
-      map(const map& x) {}
+      map(const map& x)
+      : size(0), alloc(x.alloc), comp(x.comp)
+      {
+        last = createNode(std::pair<const key_type, mapped_type>());
+        root = last;
+        last->left = last;
+        last->right = last;
 
-      ~map() {}
-      map&      operator=(const map& x) {}
+        const_iterator it = x.begin();
+        while (it != x.end())
+        {
+          insert(*it);
+          ++it;
+        }
+      }
+
+      ~map() {
+        clear();
+        deallocateNode(last);
+      }
+
+      map&      operator=(const map& x) {
+        map tmp(x);
+        swap(tmp);
+
+        return (*this);
+      }
 
       // 2. Iterators
       iterator                begin() {}
